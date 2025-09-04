@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini App - Tasks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>✅ Daily Tasks</h1>
+
+  <div class="card">
+    <p>Complete tasks and earn coins 🎉</p>
+    <button class="btn" onclick="completeTask(10)">📺 Watch Video (+10)</button>
+    <button class="btn" onclick="completeTask(20)">👥 Refer Friend (+20)</button>
+    <button class="btn" onclick="completeTask(5)">👍 Like Post (+5)</button>
+    <br><a href="index.html" class="btn">🏠 Home</a>
+  </div>
+
+  <script>
+    function completeTask(reward) {
+      let balance = parseInt(localStorage.getItem("balance")) || 100;
+      balance += reward;
+      localStorage.setItem("balance", balance);
+      alert("Task completed! 🎉 Your new balance: " + balance);
+    }
+  </script>
+</body>
+</html>
