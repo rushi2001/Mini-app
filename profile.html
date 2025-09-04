@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini App - Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>👤 My Profile</h1>
+
+  <div class="card">
+    <img id="avatar" class="avatar" src="https://i.pravatar.cc/150?img=3" alt="Avatar">
+    <h2 id="username">Guest User</h2>
+    <p>💰 Balance: <span id="balance">100</span> Coins</p>
+    <p>📅 Joined: <span id="joined">--/--/----</span></p>
+
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <button class="btn" onclick="saveProfile()">Save Profile</button>
+    <br><a href="index.html" class="btn">🏠 Home</a>
+  </div>
+
+  <script>
+    function saveProfile() {
+      const name = document.getElementById("nameInput").value;
+      if(name) {
+        localStorage.setItem("username", name);
+        localStorage.setItem("joined", new Date().toLocaleDateString());
+        if(!localStorage.getItem("balance")) {
+          localStorage.setItem("balance", 100);
+        }
+        loadProfile();
+      }
+    }
+
+    function loadProfile() {
+      const name = localStorage.getItem("username") || "Guest User";
+      const joined = localStorage.getItem("joined") || "--/--/----";
+      const balance = localStorage.getItem("balance") || 100;
+
+      document.getElementById("username").innerText = name;
+      document.getElementById("joined").innerText = joined;
+      document.getElementById("balance").innerText = balance;
+    }
+
+    loadProfile();
+  </script>
+</body>
+</html>
